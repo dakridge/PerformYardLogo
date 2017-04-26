@@ -2,8 +2,14 @@
 
 	"use strict";
 
+	// colors
+	var colors = {
+		"dark"		: "#053448",
+		"light"		: "#4291bf"
+	};
+
 	// the driver
-	var head_diameter = 50;
+	var head_diameter = 80;
 
 	// logo relationships
 	var shoulder_width_ratio = 0.25;
@@ -54,11 +60,13 @@
 			points += "0," + ( total_height - item_height ); // top left
 
 			return points;
-		});
+		})
+		.style("fill", function ( d ) { return ( d === 3 ) ? colors.light : colors.dark });
 
 	humans.append("circle")
 		.attr("cx", (base_width/2) + (base_width * shoulder_width_ratio))
 		.attr("cy", function (d) { return total_height - first_height - triangle_height - neck_length - (head_diameter/2) - (logo_height_step * d); })
-		.attr("r", head_diameter/2);
+		.attr("r", head_diameter/2)
+		.style("fill", function ( d ) { return ( d === 3 ) ? colors.light : colors.dark });
 
 })();
